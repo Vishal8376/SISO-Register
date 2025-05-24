@@ -37,7 +37,7 @@ Each D flip-flop in the circuit has a Data (D) input, a Clock (CLK) input, and a
 **PROGRAM**
 ~~~python
 
-module exp10(
+module exp5(
     input clk,    
     input reset,
     input si,     
