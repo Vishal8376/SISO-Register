@@ -24,54 +24,39 @@ The synchronous nature of the flip-flops ensures that the shifting of data occur
 Each D flip-flop in the circuit has a Data (D) input, a Clock (CLK) input, and an output (Q). The D input represents the data to be loaded into the flip-flop, while the CLK input is connected to the common clock signal. The output (Q) of each flip-flop is connected to the D input of the next flip-flop, forming a cascade.
 
 **Procedure**
-1.Type the Verilog program in Quartus Prime to implement the 4-bit Serial-In Serial-Out (SISO) Shift Register.
 
-2.Compile and run the program to ensure the design is error-free.
-
-3.Generate the RTL schematic to visualize the cascading D flip-fop connections and save it for documentation.
-
-4.Create nodes for the serial input (SI),clock (CLK),and serial output (SO) to observe the shifting process during simulation.
-
-5.Simulate the design for different input serail data patterns and observe the timing diagrams.
+1. Type the program in Quartus software.
+2. Generate the RTL schematic and save the logic diagram.
+3. Create nodes for inputs and outputs to generate the timing diagram.
+4. For different input combinations generate the timing diagram.
 
 **PROGRAM**
-~~~python
 
-module exp5(
-    input clk,    
-    input reset,
-    input si,     
-    output reg so 
-);
-    reg [3:0] shift_reg; 
-    always @(posedge clk or posedge reset) begin
-        if (reset) begin
-            shift_reg <= 4'b0000; 
-            so <= 0;             
-        end
-        else begin
-            so <= shift_reg[3];               
-            shift_reg <= {shift_reg[2:0], si}; 
-        end
-    end
+
+```
+module S_I_(clk, sin, q);
+input clk;
+input sin;
+output [3:0] q;
+reg [3:0] q;
+always @(posedge clk)
+begin
+q[0] <= sin;
+q[1] <= q[0];
+q[2] <= q[1];
+q[3] <= q[2];
+end
 endmodule
+```
 
-~~~
+Developed by: Vishal S
 
-Developed By : Vishal S
-
-Register Number : 212224040364
+Register Number: 212224040364
 
 **RTL LOGIC FOR SISO Shift Register**
-
-![image](https://github.com/user-attachments/assets/f9bede2a-5b7a-4b56-b8da-d991ed77f499)
-
-
+![image](https://github.com/user-attachments/assets/de378f6f-7649-423d-93d1-2b9a630f6413)
 **TIMING DIGRAMS FOR SISO Shift Register**
-![397899134-8dd7eb3e-c954-4fd7-af8b-31e972330069](https://github.com/user-attachments/assets/20276990-b624-4c5c-b790-ec64a6274225)
-
-
-
+![image](https://github.com/user-attachments/assets/d8e489ea-5881-43c3-b570-ecaa9d949b95)
 **RESULTS**
 
-Thus,the SISO shift register is designed and its functionality is validated using the truth table and timing diagrams.
+SISO Shift Register is implemented using verilog and validated their functionality using their functional tables
